@@ -22,16 +22,16 @@ o	Have the ability to stop, play or skip the video/audio
 
 ## ERD
 
-<img src="/root/sei/projects/Listen/ERD p4.JPG">
+<img src="ERD p4.JPG">
 
 ## WireFrame
 
-<img src="/root/sei/projects/Listen/WireFrame p4 p1.JPG">
-<img src="/root/sei/projects/Listen/WireFrame p4 p2.JPG">
-<img src="/root/sei/projects/Listen/WireFrame p4 p3.JPG">
-<img src="/root/sei/projects/Listen/WireFrame p4 p4.JPG">
-<img src="/root/sei/projects/Listen/WireFrame p4 p5.JPG">
-<img src="/root/sei/projects/Listen/WireFrame p4 p6.JPG">
+<img src="WireFrame p4 p1.JPG">
+<img src="WireFrame p4 p2.JPG">
+<img src="WireFrame p4 p3.JPG">
+<img src="WireFrame p4 p4.JPG">
+<img src="WireFrame p4 p5.JPG">
+<img src="WireFrame p4 p6.JPG">
 
 ### IceBox (Future Updates)
 
