@@ -8,7 +8,8 @@ import messages from '../shared/AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-const SignUp = (props) => { 
+const SignUp = (props) => {
+    const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
@@ -20,8 +21,8 @@ const SignUp = (props) => {
 
 		const { msgAlert, setUser } = props
 
-        const credentials = {email, password, passwordConfirmation}
-
+        const credentials = {username, email, password, passwordConfirmation}
+        console.log('credentials', credentials)
 		signUp(credentials)
 			.then(() => signIn(credentials))
 			.then((res) => setUser(res.data.user))
@@ -35,6 +36,7 @@ const SignUp = (props) => {
 			.then(() => navigate('/'))
 			.catch((error) => {
                 setEmail('')
+                setUsername('')
                 setPassword('')
                 setPasswordConfirmation('')
 				msgAlert({
@@ -61,6 +63,17 @@ const SignUp = (props) => {
                             placeholder='Enter email'
                             onChange={e => setEmail(e.target.value)}
                         />
+                    <Form.Group controlId='username'>
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control
+                            required
+                            type='username'
+                            name='username'
+                            value={username}
+                            placeholder='Enter username'
+                            onChange={e => setUsername(e.target.value)}
+                        />
+                    </Form.Group>
                     </Form.Group>
                     <Form.Group controlId='password'>
                         <Form.Label>Password</Form.Label>
