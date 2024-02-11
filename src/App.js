@@ -12,6 +12,7 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+import PodcastShow from './components/podcasts/PodcastShow'
 
 const App = () => {
     const [user, setUser] = useState(null)
@@ -67,6 +68,12 @@ const App = () => {
                 			<ChangePassword msgAlert={msgAlert} user={user} />
               			</RequireAuth>}
           			/>
+					<Route 
+						path='/:podcastId'
+						element={
+							<PodcastShow msgAlert={msgAlert} user={user} />
+						}
+					/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert

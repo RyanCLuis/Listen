@@ -24,11 +24,7 @@ const Home = (props) => {
 				setPodcasts(res.data.podcasts)
 			})
 			.catch((error) => {
-				msgAlert({
-					heading: 'Podcast Fetch Failed with error: ' + error.message,
-					message: 'Please try again later.',
-					variant: 'danger',
-				})
+				setError(error)
 			})
 	}, [])
 

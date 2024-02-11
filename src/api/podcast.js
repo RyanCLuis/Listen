@@ -7,6 +7,10 @@ export const getAllPodcasts = () => {
 }
 
 // GET -> Show
+export const getPodcast = (id) => {
+    return axios(`${apiUrl}/${id}`)
+}
+
 // CREATE -> Add a podcast
 // PATCH -> Adjust a podcast
 // DELETE -> delete a podcast
