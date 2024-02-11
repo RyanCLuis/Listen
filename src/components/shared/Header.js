@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
@@ -34,34 +34,46 @@ const unauthenticatedOptions = (
 
 const alwaysOptions = (
 	<>
-		<Nav.Item className='m-2'>
-			<Link to='/' style={linkStyle}>
-				Home
-			</Link>
-		</Nav.Item>
+
 	</>
 )
 
-const Header = ({ user }) => (
-    <div style={{ width: '180px', height: '100%' }}>
-        <Navbar bg='primary' variant='dark' style={{ height: '100vh'}}>
-            <Navbar.Brand className='m-2'>
-                <Link to='/' style={linkStyle}>
+const Header = ({ user }) => {
+    const [menuOpen, setMenuOpen] = useState(false)
+
+    const handleMenuToggle = () => {
+        setMenuOpen(!menuOpen)
+    };
+
+    return (
+        <Navbar expand='md' style={{ backgroundColor: '#343a40' }}>
+            <Navbar.Brand className='m-0'>
+                <Link to='/' style={{ ...linkStyle, display: 'inline-block', fontSize: '37px'}}>
                     Listen!
                 </Link>
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls='basic-navbar-nav' />
-            <Navbar.Collapse id='basic-navbar-nav'>
-                <Nav className='ml-auto flex-column align-items-start'>
+            <Navbar.Toggle aria-controls='basic-navbar-nav' onClick={handleMenuToggle} />
+            <Navbar.Collapse id='basic-navbar-nav' className={menuOpen ? 'show' : ''}>
+                <Nav className='mr-auto'>
+                    <Nav.Item className='m-2'>
+                        <Link to='/favorite' style={{ color: 'white', textDecoration: 'none' }}>Favorite</Link>
+                    </Nav.Item>
+                    <Nav.Item className='m-2'>
+                        <Link to='/upload' style={{ color: 'white', textDecoration: 'none' }}>Upload</Link>
+                    </Nav.Item>
+                </Nav>
+                <Nav style={{ marginLeft: 'auto' }}>
                     {user && (
-                        <span className='navbar-text mr-2'>Welcome, {user.username}</span>
+                        <span className='navbar-text ml-2' style={{ color: 'purple', fontSize: '24px'}}>Welcome, {user.username}</span>
                     )}
-                    {alwaysOptions}
-                    {user ? authenticatedOptions : unauthenticatedOptions}
+                    <div className='m-2' style={{ display: 'flex', alignItems: 'center' }}>
+                        {alwaysOptions}
+                        {user ? authenticatedOptions : unauthenticatedOptions}
+                    </div>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
-    </div>
-)
+    )
+}
 
 export default Header

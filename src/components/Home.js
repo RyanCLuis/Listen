@@ -59,7 +59,7 @@ const Home = (props) => {
 	))
 
 	return (
-		<div style={{ position: 'fixed', marginLeft: '180px',  display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+		<div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
 			<h2>Listen!</h2>
 			<div className='container-md' style={ cardContainerLayout }>
 				{ podcastCards }
