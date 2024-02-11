@@ -14,7 +14,6 @@ const cardContainerLayout = {
 const Home = (props) => {
 	const { msgAlert, user } = props
 	const [error, setError] = useState(null)
-
 	const [podcasts, setPodcasts] = useState(null)
 
 	useEffect(() => {
@@ -39,8 +38,12 @@ const Home = (props) => {
     }
 
 	const podcastCards = podcasts.map(podcast => (
-		<Card key={podcast.id} style={{ width: "30%", margin: 5 }}>
-			<Card.Header> {podcast.name} </Card.Header>
+		<Card key={podcast._id} style={{ width: "30%", margin: 5 }}>
+			<Card.Header>
+				<Link to={`/${podcast._id}`}>
+				{podcast.name} 
+				</Link> 
+			</Card.Header>
 			<Card.Body>
 				<Card.Text> 
 					{podcast.description} 
