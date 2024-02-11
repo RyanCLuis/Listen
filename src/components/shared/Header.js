@@ -43,23 +43,25 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-	<Navbar bg='primary' variant='dark' expand='md'>
-		<Navbar.Brand className='m-2'>
-            <Link to='/' style={linkStyle}>
-                Listen!
-            </Link>
-        </Navbar.Brand>
-		<Navbar.Toggle aria-controls='basic-navbar-nav' />
-		<Navbar.Collapse id='basic-navbar-nav'>
-			<Nav className='ml-auto'>
-				{user && (
-					<span className='navbar-text mr-2'>Welcome, {user.username}</span>
-				)}
-				{alwaysOptions}
-				{user ? authenticatedOptions : unauthenticatedOptions}
-			</Nav>
-		</Navbar.Collapse>
-	</Navbar>
+    <div style={{ width: '180px', height: '100%' }}>
+        <Navbar bg='primary' variant='dark' style={{ height: '100vh'}}>
+            <Navbar.Brand className='m-2'>
+                <Link to='/' style={linkStyle}>
+                    Listen!
+                </Link>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls='basic-navbar-nav' />
+            <Navbar.Collapse id='basic-navbar-nav'>
+                <Nav className='ml-auto flex-column align-items-start'>
+                    {user && (
+                        <span className='navbar-text mr-2'>Welcome, {user.username}</span>
+                    )}
+                    {alwaysOptions}
+                    {user ? authenticatedOptions : unauthenticatedOptions}
+                </Nav>
+            </Navbar.Collapse>
+        </Navbar>
+    </div>
 )
 
 export default Header

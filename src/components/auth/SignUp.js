@@ -49,8 +49,8 @@ const SignUp = (props) => {
 
 
     return (
-        <div className='row'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
+        <div style={{ position: 'fixed', marginLeft: '40%', width: '50vh', marginTop: '10%'}}>
+            <div className='col-sm-10  mx-auto mt-5'>
                 <h3>Sign Up</h3>
                 <Form onSubmit={onSignUp}>
                     <Form.Group controlId='email'>
