@@ -33,7 +33,6 @@ const PodcastCreate = (props) => {
             return { ...prevPodcast, ...updatedPodcast }
         })
     }
-    console.log('the podcast inside create', podcast)
 
     const onSubmit = (e) => {
         e.preventDefault()

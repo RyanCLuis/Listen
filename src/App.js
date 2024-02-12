@@ -28,10 +28,9 @@ const App = () => {
 	}, [])
 
     console.log('user in app', user)
-	console.log('message alerts', msgAlerts)
+
 
 	const clearUser = () => {
-		console.log('clear user ran')
 		localStorage.removeItem('user')
 		setUser(null)
 	}

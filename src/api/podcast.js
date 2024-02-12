@@ -23,5 +23,25 @@ export const createPodcast = ( newPodcast, user) => {
     })
 }
 
-// PATCH -> Adjust a podcast
-// DELETE -> delete a podcast
+// UPDATE -> Edit a podcast
+export const updatePodcast = (user, updatedPodcast) => {
+    return axios({
+        url: `${apiUrl}/${updatedPodcast._id}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { podcast: updatedPodcast }
+    })
+}
+
+// DELETE -> remove a podcast
+export const removePodcast = (user, id) => {
+    return axios({
+        url: `${apiUrl}/${id}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
