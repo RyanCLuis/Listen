@@ -6,6 +6,13 @@ import { Container, Card, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import messages from '../shared/AutoDismissAlert/messages'
 import EditPodcastModal from './EditPodcastModal'
+import EpisodeShow from '../Episodes/EpisodeShow'
+
+const episodeCardContainerLayout = {
+    display: 'flex',
+    justifyContent: 'center',
+    flexFlow: 'row wrap'
+}
 
 
 const PodcastShow = (props) => {
@@ -51,13 +58,27 @@ const PodcastShow = (props) => {
             })
     }
 
+    let episodeCards
+    if (podcast) {
+        if (podcast.episodes.length > 0) {
+            episodeCards = podcast.episodes.map(episode => (
+                <EpisodeShow 
+                    key={episode._id}
+                    episode={episode}
+                />
+            ))
+        } else {
+            episodeCards = <p>No episodes, go add some!</p>
+        }
+    }
+
     if (!podcast) {
         return <LoadingScreen />
     }
 
     return (
         <div>
-            <Container>
+            <Container className='m-2'>
                 <Card>
                     <Card.Header> {podcast.name} </Card.Header>
                     <Card.Body>
@@ -67,7 +88,7 @@ const PodcastShow = (props) => {
                             <img src={podcast.thumbnail} alt='' />
                             {podcast.type} <br />
                             {podcast.views} <br />
-                            {podcast.episodes} <br />
+                            {/* {podcast.episodes} <br /> */}
                         </Card.Text>
                         {
                             podcast.owner && user && podcast.owner._id === user._id
@@ -98,6 +119,9 @@ const PodcastShow = (props) => {
                         }
                     </Card.Body>
                 </Card>
+            </Container>
+            <Container className='m-2' style={ episodeCardContainerLayout }>
+                { episodeCards }
             </Container>
             <EditPodcastModal 
                 user={user}
