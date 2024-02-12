@@ -11,14 +11,12 @@ const cardContainerLayout = {
 	justifyContent: 'center',
 }
 
-const Home = (props) => {
-	const { msgAlert, user } = props
+const Home = () => {
 	const [error, setError] = useState(null)
 	const [podcasts, setPodcasts] = useState(null)
 
 	useEffect(() => {
 		getAllPodcasts()
-			// .then((res) => console.log('this is res.data.podcasts', res.data.podcasts))
 			.then(res => {
 				setPodcasts(res.data.podcasts)
 			})

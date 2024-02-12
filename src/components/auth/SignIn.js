@@ -27,7 +27,11 @@ const SignIn = (props) => {
         }
 
 		signIn(credentials)
-			.then((res) => setUser(res.data.user))
+			.then((res) => {
+                setUser(res.data.user)
+                const userJSON = JSON.stringify(res.data.user)
+                localStorage.setItem('user', userJSON)
+            })
 			.then(() =>
 				msgAlert({
 					heading: 'Sign In Success',

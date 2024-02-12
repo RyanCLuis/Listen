@@ -1,5 +1,5 @@
 // import React, { Component, Fragment } from 'react'
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
@@ -13,16 +13,27 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import PodcastShow from './components/podcasts/PodcastShow'
+import PodcastCreate from './components/podcasts/PodcastCreate'
 
 const App = () => {
     const [user, setUser] = useState(null)
     const [msgAlerts, setMsgAlerts] = useState([])
 
+	useEffect(() => {
+		const loggedInUser = localStorage.getItem('user')
+		if (loggedInUser) {
+			const foundUser = JSON.parse(loggedInUser)
+			setUser(foundUser)
+		}
+	}, [])
+
     console.log('user in app', user)
 	console.log('message alerts', msgAlerts)
+
 	const clearUser = () => {
-    console.log('clear user ran')
-    setUser(null)
+		console.log('clear user ran')
+		localStorage.removeItem('user')
+		setUser(null)
 	}
 
 	const deleteAlert = (id) => {
@@ -66,6 +77,13 @@ const App = () => {
             			element={
               			<RequireAuth user={user}>
                 			<ChangePassword msgAlert={msgAlert} user={user} />
+              			</RequireAuth>}
+          			/>
+          			<Route
+            			path='/create-podcast'
+            			element={
+              			<RequireAuth user={user}>
+                			<PodcastCreate msgAlert={msgAlert} user={user} />
               			</RequireAuth>}
           			/>
 					<Route 

@@ -59,7 +59,7 @@ const Header = ({ user }) => {
                         <Link to='/favorite' style={{ color: 'white', textDecoration: 'none' }}>Favorite</Link>
                     </Nav.Item>
                     <Nav.Item className='m-2'>
-                        <Link to='/upload' style={{ color: 'white', textDecoration: 'none' }}>Upload</Link>
+                        <Link to='/create-podcast' style={{ color: 'white', textDecoration: 'none' }}>Upload</Link>
                     </Nav.Item>
                 </Nav>
                 <Nav style={{ marginLeft: 'auto' }}>
