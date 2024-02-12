@@ -12,5 +12,16 @@ export const getPodcast = (id) => {
 }
 
 // CREATE -> Add a podcast
+export const createPodcast = ( newPodcast, user) => {
+    return axios({
+        url: `${apiUrl}/`,
+        method: 'POST',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { podcast: newPodcast },
+    })
+}
+
 // PATCH -> Adjust a podcast
 // DELETE -> delete a podcast
