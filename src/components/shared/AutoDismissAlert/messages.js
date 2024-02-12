@@ -7,7 +7,7 @@ const messages = {
 	changePasswordSuccess: 'Password changed successfully!',
 	changePasswordFailure:'Failed to change passwords. Check your old password and try again.',
 	updatePodcastSuccess: 'Podcast updated successfully!',
-	deletePodcastSuccess: 'Podcast updated successfully!',
+	deletePodcastSuccess: 'Podcast deleted successfully!',
 	generalError: 'Something went wrong. Please try again.',
 }
 

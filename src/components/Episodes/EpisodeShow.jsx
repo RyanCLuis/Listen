@@ -15,7 +15,8 @@ const EpisodeShow = (props) => {
             <Card className='m-2'>
                 <Card.Header> {episode.name} </Card.Header>
                 <Card.Body>
-                    <small> {episode.description} </small>
+                    <small> {episode.description} </small> <br />
+                    <hr />
                     <img src={episode.thumbnail} alt='' />
                 </Card.Body>
                 <Card.Footer>

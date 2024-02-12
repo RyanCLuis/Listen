@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import messages from '../shared/AutoDismissAlert/messages'
 import EditPodcastModal from './EditPodcastModal'
 import EpisodeShow from '../Episodes/EpisodeShow'
+import NewEpisodeModal from '../Episodes/NewEpisodeModal'
 
 const episodeCardContainerLayout = {
     display: 'flex',
@@ -21,6 +22,7 @@ const PodcastShow = (props) => {
 
     const [podcast, setPodcast] = useState(null)
     const [EditModalShow, setEditModalShow] = useState(false)
+    const [episodeModalShow, setEpisodeModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
     const navigate = useNavigate()
 
@@ -90,6 +92,13 @@ const PodcastShow = (props) => {
                             {podcast.views} <br />
                             {/* {podcast.episodes} <br /> */}
                         </Card.Text>
+                        <Button
+                            className='m-2'
+                            variant='info'
+                            onClick={() => setEpisodeModalShow(true)}
+                        >
+                            Give {podcast.name} an episode!
+                        </Button>
                         {
                             podcast.owner && user && podcast.owner._id === user._id
                             ?
@@ -130,6 +139,14 @@ const PodcastShow = (props) => {
                 msgAlert={msgAlert}
                 handleClose={() => setEditModalShow(false)}
                 podcast={podcast}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+            />
+            <NewEpisodeModal 
+                user={user}
+                show={episodeModalShow}
+                podcast={podcast}
+                handleClose={() => setEpisodeModalShow(false)}
+                msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
             />
         </div>

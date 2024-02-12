@@ -56,6 +56,7 @@ const PodcastForm = (props) => {
                         value={podcast.type}
                         onChange={handleChange}
                     >
+                        <option>Open this select menu</option>
                         <option value='Culture'>Culture</option>
                         <option value='Business'>Business</option>
                         <option value='Education'>Education</option>
