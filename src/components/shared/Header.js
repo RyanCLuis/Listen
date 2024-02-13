@@ -49,17 +49,14 @@ const Header = ({ user }) => {
         <Navbar expand='md' style={{ backgroundColor: '#343a40' }}>
             <Navbar.Brand className='m-0'>
                 <Link to='/' style={{ ...linkStyle, display: 'inline-block', fontSize: '37px'}}>
-                    Listen!
+                &nbsp;Listen!
                 </Link>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls='basic-navbar-nav' onClick={handleMenuToggle} />
             <Navbar.Collapse id='basic-navbar-nav' className={menuOpen ? 'show' : ''}>
                 <Nav className='mr-auto'>
                     <Nav.Item className='m-2'>
-                        <Link to='/favorite' style={{ color: 'white', textDecoration: 'none' }}>Favorite</Link>
-                    </Nav.Item>
-                    <Nav.Item className='m-2'>
-                        <Link to='/create-podcast' style={{ color: 'white', textDecoration: 'none' }}>Upload</Link>
+                        <Link to='/create-podcast' style={{ color: 'white', textDecoration: 'none' }}> &nbsp; &nbsp;Upload</Link>
                     </Nav.Item>
                 </Nav>
                 <Nav style={{ marginLeft: 'auto' }}>

@@ -17,11 +17,6 @@ const EditPodcastModal = (props) => {
             if (e.target.type === 'number') {
                 updatedValue = parseInt(e.target.value)
             }
-            if (updatedName === 'favorite' && e.target.checked) {
-                updatedValue = true
-            } else if (updatedName === 'favorite' && !e.target.checked) {
-                updatedValue = false
-            }
             const updatedPodcast = { [updatedName] : updatedValue }
             return {
                 ...prevPodcast, ...updatedPodcast

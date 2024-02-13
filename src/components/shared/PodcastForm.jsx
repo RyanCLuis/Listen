@@ -84,14 +84,6 @@ const PodcastForm = (props) => {
                         onChange={handleChange}
                      />
                 </Form.Group>
-                <Form.Group className='m-2'>
-                    <Form.Check
-                        label='Favorite Podcasts?'
-                        name='favorite'
-                        defaultChecked={podcast.favorite}
-                        onChange={handleChange}
-                     />
-                </Form.Group>
                 <Button className='m-2' type='submit'>
                     Submit
                 </Button>

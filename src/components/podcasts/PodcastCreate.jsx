@@ -13,7 +13,6 @@ const PodcastCreate = (props) => {
         tags: '',
         type: 'News',
         views: '',
-        favorite: false,
     })
 
     const onChange = (e) => {
@@ -24,11 +23,7 @@ const PodcastCreate = (props) => {
             if (e.target.type === 'views') {
                 updatedValue = parseInt(e.target.value)
             }
-            if (updatedName === 'favorite' && e.target.checked) {
-                updatedValue = true
-            } else if (updatedName === 'favorite' && !e.target.checked) {
-                updatedValue = false
-            }
+            
             const updatedPodcast = { [updatedName]: updatedValue }
             return { ...prevPodcast, ...updatedPodcast }
         })

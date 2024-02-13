@@ -4,13 +4,7 @@ import LoadingScreen from '../components/shared/LoadingScreen'
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-
-
-const cardContainerLayout = {
-	display: 'flex',
-	flexWrap: 'row wrap',
-	justifyContent: 'center',
-}
+const MAX_DESCRIPTION_LENGTH = 100
 
 const Home = () => {
 	const [error, setError] = useState(null)
@@ -37,34 +31,34 @@ const Home = () => {
     }
 
 	const podcastCards = podcasts.map(podcast => (
-		<Card key={podcast._id} style={{ width: "30%", margin: 5 }}>
-			<Card.Header>
-				<Link to={`/${podcast._id}`}>
-				{podcast.name} 
-				</Link> 
-			</Card.Header>
-			<Card.Body>
-				<Card.Text> 
-					{podcast.description} 
-				</Card.Text>
-				{ podcast.owner ?
-					<Card.Footer> { podcast.owner.username } </Card.Footer>
-					:
-					null
-				}
-			</Card.Body>
-		</Card>
+        <div className="col-md-4 mb-4" key={podcast._id}>
+            <Card className="h-100">
+                <Link to={`/${podcast._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Card.Body style={{ display: 'flex', flexDirection: 'column' }}>
+                        <img src={podcast.thumbnail} className="card-img-top" style={{ height: '200px', objectFit: 'cover' }} alt="" />
+                        <div style={{ flexGrow: 1, marginTop: '10px' }}>
+                            <h5>{podcast.name}</h5>
+                            <p>{podcast.description.length > MAX_DESCRIPTION_LENGTH ? podcast.description.substring(0, MAX_DESCRIPTION_LENGTH) + '...' : podcast.description}</p>
+                        </div>
+                        {podcast.owner && (
+                            <Card.Footer style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <div>Uploaded by: {podcast.owner.username}</div>
+                                <div>{podcast.views} Views</div>
+                            </Card.Footer>
+                        )}
+                    </Card.Body>
+                </Link>
+            </Card>
+        </div>
 	))
 
 	return (
-		<>
-		<div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
-			<h2>Listen!</h2>
-			<div className='container-md' style={ cardContainerLayout }>
-				{ podcastCards }
-			</div>
-		</div>
-		</>
+		<div className="container">
+            <h2 className="mt-5 mb-3">Podcasts:</h2>
+            <div className="row row-cols-1 row-cols-md-3 g-4">
+                {podcastCards}
+            </div>
+        </div>
 	)
 }
 
