@@ -38,7 +38,6 @@ const EpisodeShow = (props) => {
                 </Card.Body>
                 <Card.Footer>
                     <small> {minutes} mins {seconds} secs </small>
-                    <small> {episode.views} </small>
                     {
                         user && podcast.owner && user._id === podcast.owner._id
                         ?
