@@ -54,11 +54,11 @@ const Home = () => {
 
 	return (
 		<div className="container">
-            <h2 className="mt-5 mb-3">Podcasts:</h2>
-            <div className="row row-cols-1 row-cols-md-3 g-4">
-                {podcastCards}
-            </div>
-        </div>
+			<h2 className="mt-5 mb-3">Podcasts:</h2>
+			<div className="row row-cols-1 row-cols-md-3 g-4">
+				{podcastCards}
+			</div>
+		</div>
 	)
 }
 

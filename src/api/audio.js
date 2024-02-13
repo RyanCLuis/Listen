@@ -3,12 +3,9 @@ import axios from 'axios'
 
 
 // GET -> Show
-export const getAudio = (user, podcastId) => {
+export const getAudio = (podcastId) => {
     return axios({
-        url: `${apiUrl}/audio/${podcastId}`,
+        url: `${apiUrl}/${podcastId}`,
         method: 'GET',
-        headers: {
-            Authorization: `Token token=${user.token}`
-        }
     })
 }

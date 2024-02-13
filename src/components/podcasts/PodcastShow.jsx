@@ -18,7 +18,7 @@ const episodeCardContainerLayout = {
 
 const PodcastShow = (props) => {
     const { podcastId } = useParams()
-    const { msgAlert, user } = props
+    const { msgAlert, user, setAudioSrc } = props
 
     const [podcast, setPodcast] = useState(null)
     const [EditModalShow, setEditModalShow] = useState(false)
@@ -65,6 +65,7 @@ const PodcastShow = (props) => {
         if (podcast.episodes.length > 0) {
             episodeCards = podcast.episodes.map(episode => (
                 <EpisodeShow
+                    setAudioSrc={setAudioSrc}
                     podcast={podcast}
                     user={user}
                     messageAlert={msgAlert}

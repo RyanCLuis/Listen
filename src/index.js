@@ -7,7 +7,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <div style={{ backgroundColor: '#222', color: '#fff' }}>
+      <App />
+    </div>
   </BrowserRouter>,
   document.getElementById('root')
 );

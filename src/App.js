@@ -19,6 +19,7 @@ import PodcastCreate from './components/podcasts/PodcastCreate'
 const App = () => {
     const [user, setUser] = useState(null)
     const [msgAlerts, setMsgAlerts] = useState([])
+	const [audioSrc, setAudioSrc] = useState('')
 
 	useEffect(() => {
 		const loggedInUser = localStorage.getItem('user')
@@ -89,7 +90,7 @@ const App = () => {
 					<Route 
 						path='/:podcastId'
 						element={
-							<PodcastShow msgAlert={msgAlert} user={user} />
+							<PodcastShow setAudioSrc={setAudioSrc} msgAlert={msgAlert} user={user} />
 						}
 					/>
 				</Routes>
@@ -103,7 +104,7 @@ const App = () => {
 						deleteAlert={deleteAlert}
 					/>
 				))}
-				<Footer />
+				<Footer audioSrc={audioSrc} />
 			</Fragment>
 		)
 }

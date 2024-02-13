@@ -11,7 +11,7 @@ const formatTime = (lengthInSeconds) => {
 }
 
 const EpisodeShow = (props) => {
-    const { episode, podcast, user, msgAlert, triggerRefresh  } = props
+    const { episode, podcast, user, msgAlert, triggerRefresh, setAudioSrc  } = props
     const { minutes, seconds } = formatTime(episode.length)
     const [editModalShow, setEditModalShow] = useState(false)
 
@@ -25,6 +25,10 @@ const EpisodeShow = (props) => {
                     variant: 'danger'
                 })
             })
+    }
+
+    const setAudio = () => {
+        setAudioSrc(episode.audio)
     }
 
     return (
@@ -60,6 +64,10 @@ const EpisodeShow = (props) => {
                         :
                         null
                     }
+                    <Button 
+                        onClick={(setAudio)}
+                    > audio 
+                    </Button>
                 </Card.Footer>
             </Card>
             <EditEpisodeModal 
