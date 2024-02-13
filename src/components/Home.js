@@ -5,6 +5,7 @@ import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 
+
 const cardContainerLayout = {
 	display: 'flex',
 	flexWrap: 'row wrap',
@@ -56,12 +57,14 @@ const Home = () => {
 	))
 
 	return (
+		<>
 		<div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
 			<h2>Listen!</h2>
 			<div className='container-md' style={ cardContainerLayout }>
 				{ podcastCards }
 			</div>
 		</div>
+		</>
 	)
 }
 

@@ -1,6 +1,4 @@
 .audioPlayer {
-    --primary: #ff0000;
-    --secondary: #800080;
     display: flex;
     align-items: center;
     width: 700px;
@@ -17,6 +15,7 @@
     font-size: 16px;
     cursor: pointer;
     margin: 25px;
+    color: #ffffff;
 }
 
 .volume {

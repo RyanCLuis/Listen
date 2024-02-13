@@ -8,6 +8,7 @@ import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAl
 import Header from './components/shared/Header'
 import RequireAuth from './components/shared/RequireAuth'
 import Home from './components/Home'
+import Footer from './components/Footer'
 import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
@@ -102,6 +103,7 @@ const App = () => {
 						deleteAlert={deleteAlert}
 					/>
 				))}
+				<Footer />
 			</Fragment>
 		)
 }
