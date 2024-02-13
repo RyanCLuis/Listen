@@ -48,18 +48,18 @@ const EpisodeForm = (props) => {
                         onChange={handleChange}
                      />
                 </Form.Group>
-                <Form.Group className='m-2'>
-                    <Form.Label>Views:</Form.Label>
-                    <Form.Control
-                        placeholder='Input the number of views'
-                        type='number'
-                        name='views'
-                        id='views'
-                        value={episode.views}
-                        onChange={handleChange}
-                     />
-                </Form.Group>
+                <Form.Label>Audio File:</Form.Label>
+                <Form.Control
+                    placeholder='Input the audio file URL'
+                    type='text'
+                    name='audio'
+                    id='audio'
+                    value={episode.audio}
+                    onChange={handleChange}
+                    />
                 <Button className="m-2" type="submit">Submit</Button>
+                <Form.Group className='m-2'>
+                </Form.Group>
             </Form>
         </Container>
     )

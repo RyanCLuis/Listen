@@ -11,7 +11,8 @@ const NewEpisodeModal = (props) => {
         description: '',
         length: '',
         thumbnail: '',
-        views: 0
+        views: 0,
+        audio: ''
     })
 
     
@@ -44,7 +45,8 @@ const NewEpisodeModal = (props) => {
                     description: '',
                     length: '',
                     thumbnail: '',
-                    views: 0
+                    views: 0,
+                    audio: ''
             })
         })
             .catch(err => {
