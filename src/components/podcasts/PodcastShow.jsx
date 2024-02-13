@@ -39,7 +39,7 @@ const PodcastShow = (props) => {
                     variant: 'danger',
                 })
             })
-    }, [updated])
+    }, [updated, podcastId, msgAlert, user])
 
     const deletePodcast = () => {
         removePodcast(user, podcast._id)
@@ -64,7 +64,11 @@ const PodcastShow = (props) => {
     if (podcast) {
         if (podcast.episodes.length > 0) {
             episodeCards = podcast.episodes.map(episode => (
-                <EpisodeShow 
+                <EpisodeShow
+                    podcast={podcast}
+                    user={user}
+                    messageAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)} 
                     key={episode._id}
                     episode={episode}
                 />
