@@ -12,8 +12,8 @@ const EpisodeForm = (props) => {
                     <Form.Label>Name: </Form.Label>
                     <Form.Control 
                         placeholder="What is the title of the episode?"
-                        id="name"
-                        name="name"
+                        id="title"
+                        name="title"
                         value={ episode.name }
                         onChange={handleChange}
                     />

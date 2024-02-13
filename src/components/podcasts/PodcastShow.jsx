@@ -90,8 +90,8 @@ const PodcastShow = (props) => {
                             <img src={podcast.thumbnail} alt='' />
                             {podcast.type} <br />
                             {podcast.views} <br />
-                            {/* {podcast.episodes} <br /> */}
                         </Card.Text>
+                        { user  ? 
                         <Button
                             className='m-2'
                             variant='info'
@@ -99,6 +99,9 @@ const PodcastShow = (props) => {
                         >
                             Give {podcast.name} an episode!
                         </Button>
+                        :
+                        null
+                        }
                         {
                             podcast.owner && user && podcast.owner._id === user._id
                             ?

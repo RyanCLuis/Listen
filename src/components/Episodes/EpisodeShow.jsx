@@ -13,7 +13,7 @@ const EpisodeShow = (props) => {
     return (
         <>
             <Card className='m-2'>
-                <Card.Header> {episode.name} </Card.Header>
+                <Card.Header> {episode.title} </Card.Header>
                 <Card.Body>
                     <small> {episode.description} </small> <br />
                     <hr />
