@@ -4,6 +4,8 @@
     display: flex;
     align-items: center;
     width: 700px;
+    margin: auto;
+    margin-bottom: 5%;
 }
 
 .forwardBackward {
@@ -14,6 +16,18 @@
     font-family: monospace;
     font-size: 16px;
     cursor: pointer;
+    margin: 25px;
+}
+
+.volume {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    font-family: monospace;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 3px;
 }
 
 .forwardBackward:hover {
@@ -148,6 +162,110 @@
 
 /* firefox */
 .progressBar::-moz-range-thumb:active {
+    transform: scale(1.2);
+    background-color: var(--selectedKnobby);
+}
+
+.volumeBar {
+  --bar-bg: #ffe3d4;
+  --seek-before-width: 0;
+  --seek-before-color: #a1fff4;
+  --knobby: #3452a5;
+  --selectedKnobby: #26c9c3;
+
+  appearance: none;
+  background: var(--bar-bg);
+  border-radius: 10px;
+  position: relative;
+  width: 100%;
+  height: 11px;
+  outline: none;
+}
+
+  /* Safari */
+.volumeBar::-webkit-slider-runnable-track {
+    background: var(--bar-bg);
+    border-radius: 10px;
+    position: relative;
+    width: 100%;
+    height: 11px;
+    outline: none;
+}
+
+/* firefox */
+.volumeBar::-moz-range-track {
+    background: var(--bar-bg);
+    border-radius: 10px;
+    position: relative;
+    width: 100%;
+    height: 11px;
+    outline: none;
+}
+
+.volumeBar::-moz-focus-outer {
+    border: 0;
+}
+
+/* chrome and safari */
+.volumeBar::before {
+    content: '';
+    height: 11px;
+    width: var(--seek-before-width);
+    background-color: var(--seek-before-color);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+
+/* firefox */
+.volumeBar::-moz-range-progress {
+    background-color: var(--seek-before-color);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    height: 11px;
+}
+
+/* chrome and safari */
+.volumeBar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--knobby);
+    cursor: pointer;
+    position: relative;
+    margin: -2px 0 0 0;
+    z-index: 3;
+    box-sizing: border-box;
+}
+
+
+/* chrome and safari */
+.volumeBar::-webkit-slider-thumb:active {
+    transform: scale(1.2);
+    background-color: var(--selectedKnobby);
+}
+
+/* firefox */
+.volumeBar::-moz-range-thumb {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: transparent;
+    background-color: var(--knobby);
+    cursor: pointer;
+    position: relative;
+    z-index: 3;
+    box-sizing: border-box;
+}
+
+/* firefox */
+.volumeBar::-moz-range-thumb:active {
     transform: scale(1.2);
     background-color: var(--selectedKnobby);
 }

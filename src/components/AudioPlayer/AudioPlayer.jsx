@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect}  from "react"
 import styles from './AudioPlayer.module.css'
-import { FaArrowLeft, FaArrowRight, FaPlay, FaPause } from "react-icons/fa"
+import { FaArrowLeft, FaArrowRight, FaPlay, FaPause, FaVolumeUp } from "react-icons/fa"
 
 
 const AudioPlayer = () => {
@@ -11,6 +11,7 @@ const AudioPlayer = () => {
     const audioPlayer = useRef()
     const progressBar = useRef()
     const animationRef = useRef()
+    const volumeBar = useRef()
 
     useEffect(() => {
         const seconds = Math.floor(audioPlayer.current.duration)
@@ -38,6 +39,10 @@ const AudioPlayer = () => {
         }
     }
 
+    const changeVolume = () => {
+        audioPlayer.current.volume = volumeBar.current.value / 100
+    }
+
     const whilePlaying = () => {
         progressBar.current.value = audioPlayer.current.currentTime
         changePlayerCurrentTime()
@@ -58,7 +63,7 @@ const AudioPlayer = () => {
         progressBar.current.value = Number(progressBar.current.value - 30)
         changeRange()
     }
-    
+
     const forwardThirty = () => {
         progressBar.current.value = Number(progressBar.current.value + 30)
         changeRange()
@@ -67,6 +72,12 @@ const AudioPlayer = () => {
     return (
         <div className={styles.audioPlayer}>
             <audio ref={audioPlayer} src="https://dcs.megaphone.fm/GLT6207580082.mp3?key=fdcaf74486dbe2ede82cfb9874f6285d&request_event_id=49e2fcc9-4827-460b-acc0-d7c0dd375305" preload="metadata"></audio>
+
+            <div><FaVolumeUp className={styles.volume}/></div>
+
+            <div>
+                <input type="range" className={styles.volumeBar} defaultValue={50} ref={volumeBar} onChange={changeVolume}/>
+            </div>
 
 
             <button className={styles.forwardBackward} onClick={backThirty}><FaArrowLeft /> 30</button>
