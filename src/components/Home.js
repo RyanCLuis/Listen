@@ -3,6 +3,7 @@ import { getAllPodcasts } from '../api/podcast'
 import LoadingScreen from '../components/shared/LoadingScreen'
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import './Home.css'
 
 const MAX_DESCRIPTION_LENGTH = 100
 
@@ -31,35 +32,33 @@ const Home = () => {
     }
 
 	const podcastCards = podcasts.map(podcast => (
-        <div className="col-md-4 mb-4" key={podcast._id}>
-            <Card className="h-100">
+        <div className="col-md-3 mb-4" key={podcast._id}>
+            <Card className="card" style={{ width: '21rem', height: '100%', display: 'flex', flexDirection: 'column', backgroundColor: '#343a40', color: 'white', boxShadow: '0 4px 8px rgba(0,0,0,0.2)', borderRadius: '10px' }}>
                 <Link to={`/${podcast._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <Card.Body style={{ display: 'flex', flexDirection: 'column' }}>
-                        <img src={podcast.thumbnail} className="card-img-top" style={{ height: '200px', objectFit: 'cover' }} alt="" />
-                        <div style={{ flexGrow: 1, marginTop: '10px' }}>
-                            <h5>{podcast.name}</h5>
-                            <p>{podcast.description.length > MAX_DESCRIPTION_LENGTH ? podcast.description.substring(0, MAX_DESCRIPTION_LENGTH) + '...' : podcast.description}</p>
-                        </div>
-                        {podcast.owner && (
-                            <Card.Footer style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <div>Uploaded by: {podcast.owner.username}</div>
-                                <div>{podcast.views} Views</div>
-                            </Card.Footer>
-                        )}
+                    <Card.Img variant="top" src={podcast.thumbnail} style={{ height: '200px', objectFit: 'cover' }} />
+                    <Card.Body style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                        <Card.Title>{podcast.name}</Card.Title>
+                        <Card.Text>{podcast.description.length > MAX_DESCRIPTION_LENGTH ? podcast.description.substring(0, MAX_DESCRIPTION_LENGTH) + '...' : podcast.description}</Card.Text>
                     </Card.Body>
                 </Link>
+                {podcast.owner && (
+                    <Card.Footer style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <small style={{ color: "white" }}>Uploaded by: {podcast.owner.username}</small>
+                        <small>{podcast.views} Views</small>
+                    </Card.Footer>
+                )}
             </Card>
         </div>
-	))
+    ))
 
 	return (
-		<div className="container">
-			<h2 className="mt-5 mb-3">Podcasts:</h2>
-			<div className="row row-cols-1 row-cols-md-3 g-4">
-				{podcastCards}
-			</div>
-		</div>
-	)
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", textAlign: "center", alignItems: "center" }}>
+            <h2 className="mt-5 mb-5 text-center">Podcasts</h2>
+            <div className="row row-cols-1 g-4 justify-content-center" style={{ width: "60vw" }}>
+                {podcastCards}
+            </div>
+        </div>
+    )
 }
 
 export default Home
