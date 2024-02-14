@@ -40,16 +40,6 @@ const PodcastForm = (props) => {
                      />
                 </Form.Group>
                 <Form.Group className='m-2'>
-                    <Form.Label>Tags:</Form.Label>
-                    <Form.Control
-                        placeholder='Input tags for the podcast that are comma separated like "funny, stand-up"'
-                        type='tags'
-                        name='tags'
-                        value={podcast.tags}
-                        onChange={handleChange}
-                     />
-                </Form.Group>
-                <Form.Group className='m-2'>
                     <Form.Label>Type:</Form.Label>
                     <Form.Select
                         name='type'

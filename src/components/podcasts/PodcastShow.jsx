@@ -8,6 +8,8 @@ import messages from '../shared/AutoDismissAlert/messages'
 import EditPodcastModal from './EditPodcastModal'
 import EpisodeShow from '../Episodes/EpisodeShow'
 import NewEpisodeModal from '../Episodes/NewEpisodeModal'
+import { AiTwotoneDelete } from "react-icons/ai"
+import { GrEdit } from "react-icons/gr"
 
 const episodeCardContainerLayout = {
     display: 'flex',
@@ -85,80 +87,80 @@ const PodcastShow = (props) => {
 
     return (
         <div>
-            <Container className='m-2'>
-                <Card>
-                    <Card.Header> {podcast.name} </Card.Header>
-                    <Card.Body>
-                        <Card.Text> 
-                            {podcast.description} <br />
-                            { podcast.tags }<br />
-                            <img src={podcast.thumbnail} alt='' />
-                            {podcast.type} <br />
-                            {podcast.views} <br />
-                        </Card.Text>
-                        { user  ? 
-                        <Button
-                            className='m-2'
-                            variant='info'
-                            onClick={() => setEpisodeModalShow(true)}
-                        >
-                            Give {podcast.name} an episode!
-                        </Button>
-                        :
-                        null
-                        }
-                        {
-                            podcast.owner && user && podcast.owner._id === user._id
-                            ?
-                            <>
-                                <Button
-                                    className='m-2'
-                                    variant='warning'
-                                    onClick={() => setEditModalShow(true)}
-                                >
-                                    Edit Podcast
-                                </Button>
-                                <Button
-                                    className='m-2'
-                                    variant='danger'
-                                    onClick={() => deletePodcast()}
-                                >
-                                    Remove Podcast
-                                </Button>
-                            </>
-                            :
-                            null
-                        }
-                        { podcast.owner ?
-                            <Card.Footer> Owner: { podcast.owner.username } </Card.Footer>
-                            :
-                            null
-                        }
-                    </Card.Body>
-                </Card>
-            </Container>
-            <Container className='m-2' style={ episodeCardContainerLayout }>
-                { episodeCards }
-            </Container>
-            <EditPodcastModal 
-                user={user}
-                show={EditModalShow}
-                updatePodcast={updatePodcast}
-                msgAlert={msgAlert}
-                handleClose={() => setEditModalShow(false)}
-                podcast={podcast}
-                triggerRefresh={() => setUpdated(prev => !prev)}
-            />
-            <NewEpisodeModal 
-                user={user}
-                show={episodeModalShow}
-                podcast={podcast}
-                handleClose={() => setEpisodeModalShow(false)}
-                msgAlert={msgAlert}
-                triggerRefresh={() => setUpdated(prev => !prev)}
-            />
+            <Button
+                className='m-2'
+                variant='danger'
+                onClick={() => deletePodcast()}
+                style={{ position: 'relative', float: 'right'}}
+            >
+                <AiTwotoneDelete />
+            </Button>
+            {
+                podcast.owner && user && podcast.owner._id === user._id
+                ?
+                <>
+                <Button
+                    className='m-2'
+                    variant='warning'
+                    onClick={() => setEditModalShow(true)}
+                    style={{ position: 'relative', float: 'right'}}
+                >
+                    <GrEdit />
+                </Button>
+                </>
+                :
+                null
+            }
+          <div style={{ display: 'flex', alignItems: 'center' , margin: '3% 1% 1% 1%' }}>
+            <div style={{ display: 'inline-block' }}>
+              <img 
+                src={podcast.thumbnail} 
+                alt='' 
+                style={{ width: '300px', margin: '1% 1% 1% 1%', display: 'inline-block' }} 
+              />
+            </div>
+            <div style={{ display: 'inline-block', marginLeft: '1%' }}>
+                <h2>{podcast.name}</h2>
+                <p>{podcast.description}</p>
+                <button style={{ borderRadius: '20px', fontSize: "20px", marginBottom: "1%"}}>{podcast.type}</button>
+                <p>{podcast.views} Views</p>
+                { podcast.owner ?
+                    <p> Uploaded by: { podcast.owner.username } </p>
+                :
+                null
+                }
+            </div>
+          </div>
+          <Button
+            className='m-2'
+            variant='info'
+            onClick={() => setEpisodeModalShow(true)}
+            style={{ justifyContent: 'center', display: 'flex', margin: 'auto', textAlign: 'center'}}
+          >
+            Give {podcast.name} an episode!
+          </Button>
+          <Container className='m-2' style={ episodeCardContainerLayout }>
+            { episodeCards }
+          </Container>
+          <EditPodcastModal 
+            user={user}
+            show={EditModalShow}
+            updatePodcast={updatePodcast}
+            msgAlert={msgAlert}
+            handleClose={() => setEditModalShow(false)}
+            podcast={podcast}
+            triggerRefresh={() => setUpdated(prev => !prev)}
+          />
+          <NewEpisodeModal 
+            user={user}
+            show={episodeModalShow}
+            podcast={podcast}
+            handleClose={() => setEpisodeModalShow(false)}
+            msgAlert={msgAlert}
+            triggerRefresh={() => setUpdated(prev => !prev)}
+          />
         </div>
-    )
+      )
 }
 
 export default PodcastShow

@@ -42,7 +42,7 @@ const EditEpisodeModal = (props) => {
     }
 
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} className='dark-modal'>
             <Modal.Header closeButton />
             <Modal.Body>
                 <EpisodeForm 

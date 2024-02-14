@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import PodcastForm from '../shared/PodcastForm'
 import messages from '../shared/AutoDismissAlert/messages'
+import './EditPodcastModal.css'
 
 const EditPodcastModal = (props) => {
     const { user, show, handleClose, updatePodcast, msgAlert, triggerRefresh } = props
@@ -46,7 +47,7 @@ const EditPodcastModal = (props) => {
     }
 
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} className='dark-modal'>
             <Modal.Header closeButton />
             <Modal.Body>
                 <PodcastForm 
