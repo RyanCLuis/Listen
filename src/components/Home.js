@@ -28,7 +28,11 @@ const Home = () => {
         return <LoadingScreen />
     // what if the expected array is empty?
     } else if (podcasts.length === 0) {
-        return <p>No podcasts, go add some!</p>
+        return (
+			<div style={{ textAlign: 'center' }}>
+				<p>No podcasts, go add some!</p>
+			</div>
+		)
     }
 
 	const podcastCards = podcasts.map(podcast => (

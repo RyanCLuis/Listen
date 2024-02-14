@@ -27,32 +27,11 @@ const PodcastShow = (props) => {
             .then((res) => {
                 setPodcast(res.data.podcast)
             })
-            .catch((error) => {
-                msgAlert({
-                    heading: 'Podcast Show Failed with error: ' + error.message,
-                    message: 'Please try again',
-                    variant: 'danger',
-                })
-            })
     }, [updated, podcastId, msgAlert, user])
 
     const deletePodcast = () => {
         removePodcast(user, podcast._id)
-            .then(() => {
-                msgAlert({
-                    heading: 'Oh Yeah!',
-                    message: messages.deletePodcastSuccess,
-                    variant: 'success'
-                })
-            })
             .then(() => navigate('/'))
-            .catch(err => {
-                msgAlert({
-                    heading: 'Oh no!',
-                    message: messages.generalError,
-                    variant: 'danger'
-                })
-            })
     }
 
     let episodeCards

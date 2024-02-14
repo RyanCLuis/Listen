@@ -33,13 +33,6 @@ const PodcastCreate = (props) => {
         e.preventDefault()
         createPodcast(podcast, user)
             .then(res => { navigate(`/${res.data.podcast._id}`) })
-            .then(() => {
-                msgAlert({
-                    heading: 'Podcast Created Successfully',
-                    message: 'You have added a new podcast',
-                    variant: 'success',
-                })
-            })
             .catch((error) => {
                 msgAlert({
                     heading: 'Podcast Create Failed with error: ' + error.message,
