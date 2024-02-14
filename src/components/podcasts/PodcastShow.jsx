@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getPodcast, removePodcast, updatePodcast } from '../../api/podcast'
 import LoadingScreen from '../shared/LoadingScreen'
-import { Container, Card, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import messages from '../shared/AutoDismissAlert/messages'
 import EditPodcastModal from './EditPodcastModal'
@@ -10,13 +10,6 @@ import EpisodeShow from '../Episodes/EpisodeShow'
 import NewEpisodeModal from '../Episodes/NewEpisodeModal'
 import { AiTwotoneDelete } from "react-icons/ai"
 import { GrEdit } from "react-icons/gr"
-
-const episodeCardContainerLayout = {
-    display: 'flex',
-    justifyContent: 'center',
-    flexFlow: 'row wrap'
-}
-
 
 const PodcastShow = (props) => {
     const { podcastId } = useParams()
@@ -63,23 +56,27 @@ const PodcastShow = (props) => {
     }
 
     let episodeCards
-    if (podcast) {
-        if (podcast.episodes.length > 0) {
-            episodeCards = podcast.episodes.map(episode => (
-                <EpisodeShow
-                    setAudioSrc={setAudioSrc}
-                    podcast={podcast}
-                    user={user}
-                    messageAlert={msgAlert}
-                    triggerRefresh={() => setUpdated(prev => !prev)} 
-                    key={episode._id}
-                    episode={episode}
-                />
-            ))
-        } else {
-            episodeCards = <p>No episodes, go add some!</p>
+        if (podcast) {
+            if (podcast.episodes.length > 0) {
+                episodeCards = podcast.episodes.map(episode => (
+                    <EpisodeShow
+                        setAudioSrc={setAudioSrc}
+                        podcast={podcast}
+                        user={user}
+                        messageAlert={msgAlert}
+                        triggerRefresh={() => setUpdated(prev => !prev)} 
+                        key={episode._id}
+                        episode={episode}
+                    />
+                ))
+            } else {
+                episodeCards = (
+                    <div style={{ textAlign: 'center' }}>
+                        <p>No episodes, go add some!</p>
+                    </div>
+                )
+            }
         }
-    }
 
     if (!podcast) {
         return <LoadingScreen />
@@ -87,6 +84,10 @@ const PodcastShow = (props) => {
 
     return (
         <div>
+            {
+                podcast.owner && user && podcast.owner._id === user._id
+                ?
+                <>
             <Button
                 className='m-2'
                 variant='danger'
@@ -95,10 +96,6 @@ const PodcastShow = (props) => {
             >
                 <AiTwotoneDelete />
             </Button>
-            {
-                podcast.owner && user && podcast.owner._id === user._id
-                ?
-                <>
                 <Button
                     className='m-2'
                     variant='warning'
@@ -111,8 +108,16 @@ const PodcastShow = (props) => {
                 :
                 null
             }
-          <div style={{ display: 'flex', alignItems: 'center' , margin: '3% 1% 1% 1%' }}>
-            <div style={{ display: 'inline-block' }}>
+            <div 
+                style={{ 
+                    display: 'flex', 
+                    alignItems: 'center' , 
+                    margin: '3% 1% 1% 1%' 
+                    }}>
+            <div 
+                style={{ 
+                    display: 'inline-block' 
+                }}>
               <img 
                 src={podcast.thumbnail} 
                 alt='' 
@@ -122,7 +127,9 @@ const PodcastShow = (props) => {
             <div style={{ display: 'inline-block', marginLeft: '1%' }}>
                 <h2>{podcast.name}</h2>
                 <p>{podcast.description}</p>
-                <button style={{ borderRadius: '20px', fontSize: "20px", marginBottom: "1%"}}>{podcast.type}</button>
+                <div style={{ background: 'grey', borderRadius: '20px', fontSize: "20px", marginBottom: "1%", marginLeft: "1%", display: "inline-block", padding: ".5rem"}}>
+                    {podcast.type}
+                </div>
                 <p>{podcast.views} Views</p>
                 { podcast.owner ?
                     <p> Uploaded by: { podcast.owner.username } </p>
@@ -130,18 +137,23 @@ const PodcastShow = (props) => {
                 null
                 }
             </div>
-          </div>
-          <Button
-            className='m-2'
-            variant='info'
-            onClick={() => setEpisodeModalShow(true)}
-            style={{ justifyContent: 'center', display: 'flex', margin: 'auto', textAlign: 'center'}}
-          >
-            Give {podcast.name} an episode!
-          </Button>
-          <Container className='m-2' style={ episodeCardContainerLayout }>
-            { episodeCards }
-          </Container>
+            </div>
+            <h2 style={{marginLeft: "1rem"}}>All Episodes:</h2>
+                { episodeCards }
+            { user ?
+            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            <Button
+                className='m-2'
+                onClick={() => setEpisodeModalShow(true)}
+                variant='info'
+                style={{ width: '200px' }}
+            >
+                Add Episode
+            </Button>
+        </div>
+        :
+        null
+        }
           <EditPodcastModal 
             user={user}
             show={EditModalShow}
