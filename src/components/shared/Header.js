@@ -32,12 +32,6 @@ const unauthenticatedOptions = (
 	</>
 )
 
-const alwaysOptions = (
-	<>
-
-	</>
-)
-
 const Header = ({ user }) => {
     const [menuOpen, setMenuOpen] = useState(false)
 
@@ -48,23 +42,39 @@ const Header = ({ user }) => {
     return (
         <Navbar expand='md' style={{ backgroundColor: '#343a40' }}>
             <Navbar.Brand className='m-0'>
-                <Link to='/' style={{ ...linkStyle, display: 'inline-block', fontSize: '37px'}}>
+                <Link 
+                    to='/' 
+                    style={{ ...linkStyle, display: 'inline-block', fontSize: '37px'}}>
                 &nbsp;Listen!
                 </Link>
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls='basic-navbar-nav' onClick={handleMenuToggle} />
-            <Navbar.Collapse id='basic-navbar-nav' className={menuOpen ? 'show' : ''}>
+            <Navbar.Toggle 
+                aria-controls='basic-navbar-nav' 
+                onClick={handleMenuToggle} 
+            />
+            <Navbar.Collapse 
+                id='basic-navbar-nav' 
+                className={menuOpen ? 'show' : ''}>
                 <Nav className='mr-auto'>
                     <Nav.Item className='m-2'>
-                        <Link to='/create-podcast' style={{ color: 'white', textDecoration: 'none' }}> &nbsp; &nbsp;Upload</Link>
+                        <Link 
+                            to='/create-podcast' 
+                            style={{ color: 'white', textDecoration: 'none' }}
+                        > 
+                        &nbsp; &nbsp;Upload </Link>
                     </Nav.Item>
                 </Nav>
                 <Nav style={{ marginLeft: 'auto' }}>
                     {user && (
-                        <span className='navbar-text ml-2' style={{ color: 'purple', fontSize: '24px'}}>Welcome, {user.username}</span>
+                        <span 
+                            className='navbar-text ml-2' 
+                            style={{ color: 'purple', fontSize: '24px'}}
+                        >
+                        Welcome, {user.username}</span>
                     )}
-                    <div className='m-2' style={{ display: 'flex', alignItems: 'center' }}>
-                        {alwaysOptions}
+                    <div 
+                        className='m-2' 
+                        style={{ display: 'flex', alignItems: 'center' }}>
                         {user ? authenticatedOptions : unauthenticatedOptions}
                     </div>
                 </Nav>

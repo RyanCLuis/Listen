@@ -4,7 +4,6 @@ import { getPodcast, removePodcast, updatePodcast } from '../../api/podcast'
 import LoadingScreen from '../shared/LoadingScreen'
 import { Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import messages from '../shared/AutoDismissAlert/messages'
 import EditPodcastModal from './EditPodcastModal'
 import EpisodeShow from '../Episodes/EpisodeShow'
 import NewEpisodeModal from '../Episodes/NewEpisodeModal'
@@ -106,7 +105,15 @@ const PodcastShow = (props) => {
             <div style={{ display: 'inline-block', marginLeft: '1%' }}>
                 <h2>{podcast.name}</h2>
                 <p>{podcast.description}</p>
-                <div style={{ background: 'grey', borderRadius: '20px', fontSize: "20px", marginBottom: "1%", marginLeft: "1%", display: "inline-block", padding: ".5rem"}}>
+                <div 
+                    style={{ 
+                        background: 'grey', 
+                        borderRadius: '20px', 
+                        fontSize: "20px", 
+                        marginBottom: "1%", 
+                        marginLeft: "1%", 
+                        display: "inline-block", 
+                        padding: ".5rem"}}>
                     {podcast.type}
                 </div>
                 <p>{podcast.views} Views</p>
